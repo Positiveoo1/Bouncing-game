@@ -17,7 +17,7 @@ let score = 0;
 
 // Move the paddle with the mouse
 document.addEventListener('mousemove', function(event) {
-    if (gamePaused) ;
+    if (gamePaused) return;
     const rect = gameArea.getBoundingClientRect();
     paddleX = event.clientX - rect.left - paddle.offsetWidth / 2;
     paddleX = Math.max(0, Math.min(gameArea.clientWidth - paddle.offsetWidth, paddleX));
@@ -83,7 +83,7 @@ document.documentElement.setAttribute('data-theme', savedTheme);
 
 function togglePause() {
     gamePaused = !gamePaused;
-    pauseButton.textContent = gamePaused ? 'Resume' : 'Pause';
+    pauseButton.innerHTML = gamePaused ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
     if (!gamePaused) {
         update();
     }
