@@ -1,0 +1,80 @@
+/* styles.css */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#gameArea {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    background-color: #333;
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+#paddle {
+    position: absolute;
+    bottom: 20px;
+    width: 100px;
+    height: 20px;
+    background-color: #ff6347;
+}
+
+#ball {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #00ff00;
+    border-radius: 50%;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000; /* Ensure the game over message is above everything */
+    display: none; /* Initially hidden */
+}
+
+#gameOver p {
+    margin: 0 0 20px;
+    font-size: 24px;
+}
+
+#gameOver button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#gameOver button:hover {
+    background-color: #e55342;
+}
+
+.hidden {
+    display: none;
+}
