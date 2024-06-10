@@ -40,13 +40,23 @@ body {
     border: 2px solid var(--text-color);
     overflow: hidden;
 }
-
 #paddle {
     position: absolute;
     bottom: 20px;
-    width: 100px;
-    height: 20px;
-    background-color: var(--paddle-color);
+    width: 120px; 
+    height: 80px; 
+    background-color: var(--game-area-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#paddle i {
+    width: 100%;
+    height: 100%;
+    font-size: 88px;
+    z-index: 999;
+    color: var(--paddle-color);
 }
 
 #ball {
@@ -113,5 +123,19 @@ body {
 }
 
 #themeToggle:hover {
+    background-color: var(--button-hover-bg);
+}
+#pauseButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pauseButton:hover {
     background-color: var(--button-hover-bg);
 }
