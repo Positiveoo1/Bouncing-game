@@ -15,9 +15,8 @@ let gameRunning = true;
 let gamePaused = false;
 let score = 0;
 
-// Move the paddle with the mouse
 document.addEventListener('mousemove', function(event) {
-    if (gamePaused) return;
+    if (gamePaused) ;
     const rect = gameArea.getBoundingClientRect();
     paddleX = event.clientX - rect.left - paddle.offsetWidth / 2;
     paddleX = Math.max(0, Math.min(gameArea.clientWidth - paddle.offsetWidth, paddleX));
@@ -35,7 +34,7 @@ function update() {
         if (ballX + ball.offsetWidth >= paddleX && ballX <= paddleX + paddle.offsetWidth) {
             ballX = Math.random() * (gameArea.clientWidth - ball.offsetWidth);
             ballY = 0;
-            ballSpeedY = Math.abs(ballSpeedY); // Ensure the ball is falling downwards
+            ballSpeedY = Math.abs(ballSpeedY); 
             score++; // Increment score
             scoreDisplay.textContent = `Score: ${score}`; 
         } else {
@@ -44,7 +43,6 @@ function update() {
         }
     }
 
-    // Update ball position
     ball.style.top = ballY + 'px';
     ball.style.left = ballX + 'px';
     requestAnimationFrame(update);
@@ -83,7 +81,7 @@ document.documentElement.setAttribute('data-theme', savedTheme);
 
 function togglePause() {
     gamePaused = !gamePaused;
-    pauseButton.innerHTML = gamePaused ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+    pauseButton.innerHTML = gamePaused ?'<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
     if (!gamePaused) {
         update();
     }
