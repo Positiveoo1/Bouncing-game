@@ -5,3 +5,10 @@ Here 's the screenshot
 --Dark mode added
 --Fixed some bugs
 --Made some comfort
+v1.0
+
+*Updated*
+
+--Pause added
+--Styles changed
+--Bugs fixed
