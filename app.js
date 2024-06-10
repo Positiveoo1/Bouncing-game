@@ -8,7 +8,6 @@ const themeToggle = document.getElementById('themeToggle');
 const pauseButton = document.getElementById('pauseButton');
 const bgMusic = document.querySelector('audio');
 
-// Function to start playing background music
 function playBackgroundMusic() {
     bgMusic.play();
 }
@@ -95,7 +94,6 @@ function togglePause() {
 
 pauseButton.addEventListener('click', togglePause);
 
-// Start playing background music when the game starts
 playBackgroundMusic();
 
 update();
