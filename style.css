@@ -1,3 +1,4 @@
+
 :root {
     --bg-color: #f0f0f0;
     --game-area-bg: #333;
@@ -29,6 +30,20 @@ body {
     height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    z-index: 1000;
 }
 
 #gameArea {

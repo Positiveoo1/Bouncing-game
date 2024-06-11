@@ -1,3 +1,4 @@
+
 document.addEventListener('keydown', function (e) {
     if (e.key === 'F12' || 
         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
@@ -10,7 +11,7 @@ document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
 
-// Improved DevTools detection
+
 (function() {
     var devtools = {
         open: false,
@@ -143,4 +144,9 @@ startButton.addEventListener('click', () => {
 playBackgroundMusic();
 
 
-
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('gameArea').classList.remove('hidden');
+    }, 6000);
+});
