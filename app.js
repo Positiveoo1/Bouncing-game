@@ -141,6 +141,8 @@ startButton.addEventListener('click', () => {
     update();
 });
 
+
+
 playBackgroundMusic();
 
 
