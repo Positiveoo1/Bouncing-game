@@ -7,8 +7,9 @@ const replayButton = document.getElementById('replayButton');
 const themeToggle = document.getElementById('themeToggle');
 const pauseButton = document.getElementById('pauseButton');
 const bgMusic = document.querySelector('audio');
+const instructionsModal = document.getElementById('instructionsModal');
+const startButton = document.getElementById('startButton');
 
-// Function to start playing background music
 function playBackgroundMusic() {
     bgMusic.play();
 }
@@ -17,12 +18,12 @@ let paddleX = (gameArea.clientWidth - paddle.offsetWidth) / 2;
 let ballX = Math.random() * (gameArea.clientWidth - ball.offsetWidth);
 let ballY = 0;
 let ballSpeedY = 5;
-let gameRunning = true;
+let gameRunning = false;
 let gamePaused = false;
 let score = 0;
 
 document.addEventListener('mousemove', function(event) {
-    if (gamePaused) return;
+    if (!gameRunning || gamePaused) return;
     const rect = gameArea.getBoundingClientRect();
     paddleX = event.clientX - rect.left - paddle.offsetWidth / 2;
     paddleX = Math.max(0, Math.min(gameArea.clientWidth - paddle.offsetWidth, paddleX));
@@ -87,7 +88,7 @@ document.documentElement.setAttribute('data-theme', savedTheme);
 
 function togglePause() {
     gamePaused = !gamePaused;
-    pauseButton.innerHTML = gamePaused ?'<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+    pauseButton.innerHTML = gamePaused ? '<i class="fa-solid fa-play"></i>' : '<i class="fa-solid fa-pause"></i>';
     if (!gamePaused) {
         update();
     }
@@ -95,7 +96,11 @@ function togglePause() {
 
 pauseButton.addEventListener('click', togglePause);
 
-// Start playing background music when the game starts
-playBackgroundMusic();
+startButton.addEventListener('click', () => {
+    instructionsModal.classList.add('hidden');
+    gameRunning = true;
+    playBackgroundMusic();
+    update();
+});
 
-update();
+playBackgroundMusic();
