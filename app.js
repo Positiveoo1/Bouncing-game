@@ -96,15 +96,11 @@ function togglePause() {
 
 pauseButton.addEventListener('click', togglePause);
 
-<<<<<<< HEAD
 startButton.addEventListener('click', () => {
     instructionsModal.classList.add('hidden');
     gameRunning = true;
     playBackgroundMusic();
     update();
 });
-=======
-playBackgroundMusic();
->>>>>>> 0add36fbeea59145e06f553a8d3b141897e83e9a
 
 playBackgroundMusic();
