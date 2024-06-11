@@ -110,7 +110,7 @@ body {
 .hidden {
     display: none;
 }
-/* Add this to your existing style.css file */
+
 .modal {
     display: flex;
     justify-content: center;
