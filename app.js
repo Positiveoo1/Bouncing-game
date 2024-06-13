@@ -1,4 +1,3 @@
-
 document.addEventListener('keydown', function (e) {
     if (e.key === 'F12' || 
         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
@@ -10,7 +9,6 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
-
 
 (function() {
     var devtools = {
@@ -36,6 +34,7 @@ document.addEventListener('contextmenu', function (e) {
         }
     }, 500);
 })();
+
 const gameArea = document.getElementById('gameArea');
 const paddle = document.getElementById('paddle');
 const ball = document.getElementById('ball');
@@ -47,6 +46,12 @@ const pauseButton = document.getElementById('pauseButton');
 const bgMusic = document.querySelector('audio');
 const instructionsModal = document.getElementById('instructionsModal');
 const startButton = document.getElementById('startButton');
+const savedScoresButton = document.getElementById('savedScores');
+const savedScoresModal = document.getElementById('savedScoresModal');
+const closeSavedScoresButton = document.getElementById('closeSavedScores');
+const highestScoreDisplay = document.getElementById('highestScore');
+const secondScoreDisplay = document.getElementById('secondScore');
+const lastScoreDisplay = document.getElementById('lastScore');
 
 function playBackgroundMusic() {
     bgMusic.play();
@@ -59,6 +64,9 @@ let ballSpeedY = 5;
 let gameRunning = false;
 let gamePaused = false;
 let score = 0;
+let highestScore = 0;
+let secondScore = 0;    
+let lastScore = 0;
 
 document.addEventListener('mousemove', function(event) {
     if (!gameRunning || gamePaused) return;
@@ -95,6 +103,7 @@ function update() {
 
 function gameOver() {
     gameRunning = false;
+    updateScores();
     gameOverDiv.classList.remove('hidden');
     gameOverDiv.style.display = 'block';
 }
@@ -110,6 +119,7 @@ function resetGame() {
     gameOverDiv.classList.add('hidden');
     gameOverDiv.style.display = 'none';
     update();
+    savedScoresModal.style.display = 'none';
 }
 
 replayButton.addEventListener('click', resetGame);
@@ -141,14 +151,54 @@ startButton.addEventListener('click', () => {
     update();
 });
 
+savedScoresButton.addEventListener('click', () => {
+    displaySavedScores();
+    savedScoresModal.classList.remove('hidden');
+    savedScoresModal.style.display = 'block';
+});
 
+closeSavedScoresButton.addEventListener('click', () => {
+    savedScoresModal.classList.add('hidden');
+    savedScoresModal.style.display = 'none';
+});
+
+function updateScores() {
+    lastScore = score;
+    if (lastScore > highestScore) {
+        secondScore = highestScore;
+        highestScore = lastScore;
+    } else if (lastScore > secondScore) {
+        secondScore = lastScore;
+    }
+    saveScores();
+}
+
+function saveScores() {
+    localStorage.setItem('highestScore', highestScore);
+    localStorage.setItem('secondScore', secondScore);
+    localStorage.setItem('lastScore', lastScore);
+}
+
+function loadScores() {
+    highestScore = localStorage.getItem('highestScore') || 0;
+    secondScore = localStorage.getItem('secondScore') || 0;
+    lastScore = localStorage.getItem('lastScore') || 0;
+}
+
+function displaySavedScores() {
+    loadScores();
+    highestScoreDisplay.textContent = `Highest Score: ${highestScore}`;
+    secondScoreDisplay.textContent = `Second Highest Score: ${secondScore}`;
+    lastScoreDisplay.textContent = `Last Score: ${lastScore}`;
+}
 
 playBackgroundMusic();
-
 
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('gameArea').classList.remove('hidden');
     }, 6000);
+    loadScores();
+    gameOverDiv.style.display = 'none'; // Ensure the game over modal is hidden during the initial load
 });
