@@ -32,6 +32,7 @@ body {
     background: url(./back.jpg) no-repeat center/cover;
     color: var(--text-color);
 }
+
 #loadingScreen {
     position: fixed;
     top: 0;
@@ -74,6 +75,9 @@ body {
     z-index: 999;
     color: var(--paddle-color);
 }
+#paddle i {
+    font-size: 110px;
+}
 
 #ball {
     position: absolute;
@@ -92,6 +96,8 @@ body {
 }
 
 #gameOver {
+    display: none; 
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -101,7 +107,6 @@ body {
     padding: 20px;
     border-radius: 10px;
     z-index: 1000; 
-    display: none; 
 }
 
 #gameOver p {

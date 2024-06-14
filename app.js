@@ -53,15 +53,11 @@ const highestScoreDisplay = document.getElementById('highestScore');
 const secondScoreDisplay = document.getElementById('secondScore');
 const lastScoreDisplay = document.getElementById('lastScore');
 
-function playBackgroundMusic() {
-    bgMusic.play();
-}
-
 let paddleX = (gameArea.clientWidth - paddle.offsetWidth) / 2;
 let ballX = Math.random() * (gameArea.clientWidth - ball.offsetWidth);
 let ballY = 0;
 let ballSpeedY = 5;
-let gameRunning = false;
+let gameRunning = true;
 let gamePaused = false;
 let score = 0;
 let highestScore = 0;
@@ -92,6 +88,9 @@ function update() {
             scoreDisplay.textContent = `Score: ${score}`; 
         } else {
             gameOver(); 
+            gameOverDiv.classList.remove('hidden');
+            gameOverDiv.style.display = 'block';
+            gameRunning = false;
             return;
         }
     }
@@ -146,8 +145,9 @@ pauseButton.addEventListener('click', togglePause);
 
 startButton.addEventListener('click', () => {
     instructionsModal.classList.add('hidden');
+    gameOverDiv.classList.add('hidden');
+    gameOverDiv.style.display = 'none';
     gameRunning = true;
-    playBackgroundMusic();
     update();
 });
 
@@ -192,13 +192,13 @@ function displaySavedScores() {
     lastScoreDisplay.textContent = `Last Score: ${lastScore}`;
 }
 
-playBackgroundMusic();
-
 window.addEventListener('load', () => {
+    
     setTimeout(() => {
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('gameArea').classList.remove('hidden');
+       
     }, 6000);
     loadScores();
-    gameOverDiv.style.display = 'none'; // Ensure the game over modal is hidden during the initial load
+   
 });
